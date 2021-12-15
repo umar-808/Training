@@ -21,6 +21,7 @@ public class Client {
     public static void main(String[] args) throws InterruptedException {
         try {
             Socket s = new Socket("localhost", 8082);
+            System.out.println("These are changes for git");
             DataInputStream dis = new DataInputStream(s.getInputStream());
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
             dos.writeUTF("Are you Alive?");
@@ -30,7 +31,7 @@ public class Client {
                 Thread.sleep(1000);
             }
             System.out.println("Response Received");
-            System.out.println("Numbers of Time printed: "+ count);
+            System.out.println("Numbers of Time printed: " + count);
             String message = dis.readUTF();
             System.out.print(message);
             dis.close();
