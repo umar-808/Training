@@ -16,7 +16,7 @@ public class Server {
 
     public static void main(String[] args) {
         try {
-            ServerSocket ss = new ServerSocket(8082);
+            ServerSocket ss = new ServerSocket(8081);
             while (true) {
                 Socket s = ss.accept();
                 Handler handler = new Handler(s);

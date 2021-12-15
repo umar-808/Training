@@ -20,7 +20,7 @@ public class Client {
 
     public static void main(String[] args) throws InterruptedException {
         try {
-            Socket s = new Socket("localhost", 8082);
+            Socket s = new Socket("localhost", 8081);
             DataInputStream dis = new DataInputStream(s.getInputStream());
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
             dos.writeUTF("Are you Alive?");

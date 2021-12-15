@@ -24,7 +24,7 @@ public class Server {
             while (true) {
                 Socket s = ss.accept();
                 Handler handler = new Handler(s, cdl);
-                Thread thread = new Thread(handler);
+                Thread thread = new Thread(handler);    
                 thread.start();
                 cdl.await();
             }
