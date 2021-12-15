@@ -1,0 +1,3 @@
+com\mycompany\delayed\Client.class
+com\mycompany\delayed\Handler.class
+com\mycompany\delayed\Server.class
