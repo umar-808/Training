@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private ProductRepository repo;
 
     @GetMapping("/products")
     public List<Product> list() {
-        return productService.listAll();
+        return repo.findAll();
     }
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> get(@PathVariable Integer id) {
         try {
-            Product product = productService.get(id);
+            Product product = repo.findById(id).get();
             return new ResponseEntity<Product>(product, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
@@ -38,11 +38,11 @@ public class ProductController {
 
     @PostMapping("/products")
     public void add(@RequestBody Product product) {
-        productService.save(product);
+        repo.save(product);
     }
 
     @DeleteMapping("/products/{id}")
     public void delete(@PathVariable Integer id) {
-        productService.delete(id);
+        repo.deleteById(id);
     }
 }
