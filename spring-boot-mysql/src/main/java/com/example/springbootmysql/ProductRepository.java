@@ -5,7 +5,6 @@
 package com.example.springbootmysql;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.springbootmysql.Product;
 
 /**
  *
