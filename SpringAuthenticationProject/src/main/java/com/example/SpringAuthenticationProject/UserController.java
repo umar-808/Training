@@ -53,6 +53,16 @@ public class UserController {
         return null;
     }
 
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUsers(@RequestHeader("key") String key, @PathVariable Integer id) {
+        if (key.equals(this.getAccessToken())) {
+            User user = repo.findById(id).get();
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     public static String generateRandomPassword(int len) {
         String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
                 + "lmnopqrstuvwxyz!@#$%&";
