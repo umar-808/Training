@@ -4,7 +4,7 @@
  */
 package com.example.entityrelationship;
 
-import javax.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,8 +27,9 @@ public class ProductReview {
     private String username;
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "product-review")
     private Product product;
 
     public long getId() {

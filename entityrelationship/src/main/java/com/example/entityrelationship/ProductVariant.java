@@ -4,6 +4,8 @@
  */
 package com.example.entityrelationship;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,7 +22,7 @@ import javax.persistence.Table;
  * @author kalsym
  */
 @Entity
-@Table(name="product_variant")
+@Table(name = "product_variant")
 public class ProductVariant {
 
     @Id
@@ -30,10 +32,12 @@ public class ProductVariant {
     private String description;
 
     @OneToMany(mappedBy = "productVariant", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "product-variant1")
     private List<ProductVariantAvailable> productVariantsAvailable;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "product-variant")
     private Product product;
 
     public long getId() {
@@ -68,6 +72,7 @@ public class ProductVariant {
         this.product = product;
     }
 
+    @JsonManagedReference
     public List<ProductVariantAvailable> getProductVariantsAvailable() {
         return productVariantsAvailable;
     }
@@ -75,6 +80,5 @@ public class ProductVariant {
     public void setProductVariantsAvailable(List<ProductVariantAvailable> productVariantsAvailable) {
         this.productVariantsAvailable = productVariantsAvailable;
     }
-
 
 }

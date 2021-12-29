@@ -4,6 +4,7 @@
  */
 package com.example.entityrelationship;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,12 +29,15 @@ public class Product {
     private String description;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "product-review")
     private List<ProductReview> productReviews;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "product-variant")
     private List<ProductVariant> productVariants;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "productvariant-available")
     private List<ProductVariantAvailable> productVariantsAvailable;
 
     public long getId() {

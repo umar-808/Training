@@ -4,7 +4,7 @@
  */
 package com.example.entityrelationship;
 
-import javax.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +26,14 @@ public class ProductVariantAvailable {
     private long id;
     private String sequenceNumber;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "productvariant-available")
     private Product product;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "productvariant_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference(value = "product-variant1")
     private ProductVariant productVariant;
 
     public long getId() {
